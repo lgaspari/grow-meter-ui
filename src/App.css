@@ -1,29 +1,116 @@
-html,
-body {
-  background-color: #fafafa;
-  margin: 0;
-  padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+:root {
+  --color-ph: #54b6c7; /* 84, 182, 199 */
+  --color-soil-moisture: #51b295; /* moisture: 81, 178, 149 */
+  --color-tds: #c969c5; /* 201, 105, 197 */
+  --color-temperature: #c24d64; /* 194, 77, 100 */
 }
 
-.container {
+* {
+  font-family: 'Afacad', sans-serif;
+  font-size: 8px;
+  line-height: 1;
+}
+
+@media screen and (min-width: 415px) {
+  * {
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  * {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 1025) {
+  * {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  * {
+    font-size: 16px;
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.sensor-values {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.sensor-values > div {
+  flex-grow: 1;
+}
+
+@media screen and (min-width: 769px) {
+  .sensor-values {
+    display: grid;
+    grid-template-areas:
+      'temperature soil-moisture'
+      'tds ph';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .sensor-values > div {
+    flex-grow: unset;
+  }
+}
+
+.sensor-value {
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  justify-items: center;
-  padding: 1rem;
+  gap: 8px;
+  justify-content: center;
+  position: relative;
+}
+.sensor-value--temperature {
+  background-color: var(--color-temperature);
+}
+.sensor-value--soil-moisture {
+  background-color: var(--color-soil-moisture);
+}
+.sensor-value--tds {
+  background-color: var(--color-tds);
+}
+.sensor-value--ph {
+  background-color: var(--color-ph);
 }
 
-.highlight {
-  color: #007fff;
-  display: block;
-  font-weight: 700;
+.sensor-value__label {
+  align-items: center;
+  background-color: #212121;
+  border-radius: 2rem;
+  color: #fff;
+  display: inline-flex;
+  font-size: 2rem;
+  gap: 0.5rem;
+  opacity: 0.25;
+  padding: 0.5rem 1.5rem;
 }
-
-.title {
-  font-family: sans-serif;
-  font-size: 3rem;
-  font-weight: 300;
-  line-height: 4rem;
-  text-align: center;
+.sensor-value__reading {
+  display: inline-flex;
+  gap: 1rem;
+}
+.sensor-value__unit {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+  place-self: flex-end;
+}
+.sensor-value__value {
+  font-size: 10rem;
 }
